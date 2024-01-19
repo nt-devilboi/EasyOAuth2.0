@@ -1,9 +1,16 @@
-GetBuilder
+# EasyOAuth2.0
+
+ **EasyOAuth2.0** Help you Get Token From others Authorization Services like: GitHub, Google.
+
+## Getting started
+
+### First Create OAuthConstructor
+
 ```cs
 var oAuth = OAuths.CreateBuilder();
 ```
 and
-AddOauts
+### Second Add OAuths
 ```cs
 
 oAuth.AddOAuth("GitHub", _ =>
@@ -17,16 +24,16 @@ oAuth.AddOAuth("GitHub", _ =>
         .SetClientId("08f51cb49cd389a89b6f");
 });
 ```
-after 
+### Third Add in Di (for asp.net)
 ```cs
 builder.Services.AddSingleton<IOAuthService, OAuthService>();
 builder.Services.AddOAuths(oAuth);
 ```
-GetRequestsFor Authorization
+### Fourth create request on Auth server
 ```cs
 OAuthService.CreateOAuthRequests(yourState);
 ```
-And Just Take Token
+### Fifth Get Token
 ```cs
 var token = await _OAuthService.GetAccessToken(yourState, AuthServiceCode);
 ```

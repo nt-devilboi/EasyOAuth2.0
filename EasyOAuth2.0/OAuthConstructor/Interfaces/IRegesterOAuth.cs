@@ -1,8 +1,8 @@
 using UlearnTodoTimer.FluetApi.ConstructorOauth;
 
-namespace UlearnTodoTimer.OAuthConstructor.Interfaces;
+namespace EasyOAuth2._0.OAuthConstructor.Interfaces;
 
 public interface IRegisterOAuth
 {
-    public FluetApi.ConstructorOauth.OAuths AddOAuth(string name, Action<ConstructorOAuth> ConfigureOAuth);
+    public OAuths AddOAuth(string name, Action<ConstructorOAuthService> ConfigureOAuth);
 }

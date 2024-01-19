@@ -17,7 +17,7 @@ public class OAuthService : IOAuthService
     public async Task<string?> GetAccessToken(string state, string code)
     {
         var oAuthName = state.Split(':')[0]; //todo: придумать проверку state. имея есть выше.
-        var request = _provideOAuth.GetOAuth(state).CreateGetAccessTokenRequest(code);
+        var request = _provideOAuth.GetOAuth(oAuthName).CreateGetAccessTokenRequest(code);
 
         var client = new HttpClient();
         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));

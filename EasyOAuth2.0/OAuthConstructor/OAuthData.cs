@@ -2,7 +2,7 @@ using UlearnTodoTimer.OAuthConstructor.Extentions;
 
 namespace UlearnTodoTimer.OAuthConstructor;
 
-internal class OAuthData // по идей можно сделать internal, если будет в виде либы
+public class OAuthData // по идей можно сделать internal, если будет в виде либы
 {
     public string ServiceOAuth { get; set; } = string.Empty;
     public string UriAuthorization { get; set; } = string.Empty;

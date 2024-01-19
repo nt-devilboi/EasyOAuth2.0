@@ -2,7 +2,7 @@ using System.Text;
 
 namespace UlearnTodoTimer.OAuthConstructor.Extentions;
 
-public static class ExtentsionQuery
+public static class ExtensionQuery
 {
     public static string AsSnakeCase(this string query)
     {

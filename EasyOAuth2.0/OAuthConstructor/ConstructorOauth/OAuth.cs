@@ -1,4 +1,6 @@
 
+using EasyOAuth2._0.OAuthConstructor.Interfaces;
+using UlearnTodoTimer.OAuthConstructor;
 using UlearnTodoTimer.OAuthConstructor.Interfaces;
 
 namespace UlearnTodoTimer.FluetApi.ConstructorOauth;
@@ -10,7 +12,7 @@ public class OAuths : IRegisterOAuth, IProvideOAuth
     private readonly Dictionary<string, IOauthRequests> OauthRequestsMap = new Dictionary<string, IOauthRequests>();
     public IReadOnlyDictionary<string, IOauthRequests> GetAll => OauthRequestsMap;
     
-    public OAuths AddOAuth(string name, Action<ConstructorOAuth> ConfigureOAuth)
+    public OAuths AddOAuth(string name, Action<ConstructorOAuthService> ConfigureOAuth)
     {
         if (name == string.Empty)
         {
@@ -22,7 +24,7 @@ public class OAuths : IRegisterOAuth, IProvideOAuth
             throw new ArgumentNullException(nameof(ConfigureOAuth));
         }
 
-        var ctorOAuth = new ConstructorOAuth();
+        var ctorOAuth = new ConstructorOAuthService(new OAuthData());
         ConfigureOAuth(ctorOAuth);
         OauthRequestsMap.Add(name, ctorOAuth.Build()); // todo: реализовать проверки на то, что запрос может сущестовать и работать.
 

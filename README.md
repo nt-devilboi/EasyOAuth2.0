@@ -7,13 +7,13 @@
 ### First Create OAuthConstructor
 
 ```cs
-var oAuth = OAuths.CreateBuilder();
+var oAuths = OAuths.CreateBuilder();
 ```
 and
 ### Second Add OAuths
 ```cs
 
-oAuth.AddOAuth("GitHub", _ =>
+oAuths.AddOAuth("GitHub", _ =>
 {
     _.SetUriPageAuth("login/oauth/authorize")
         .SetUriGetAccessToken("login/oauth/access_token")
@@ -27,7 +27,7 @@ oAuth.AddOAuth("GitHub", _ =>
 ### Third Add in Di (for asp.net)
 ```cs
 builder.Services.AddSingleton<IOAuthService, OAuthService>();
-builder.Services.AddOAuths(oAuth);
+builder.Services.AddOAuths(oAuths);
 ```
 ### Fourth create request on Auth server
 ```cs

@@ -1,6 +1,4 @@
-using UlearnTodoTimer.FluetApi.ConstructorOauth;
-
-namespace UlearnTodoTimer.OAuthConstructor.Interfaces;
+namespace EasyOAuth.Abstraction;
 
 public interface IConstructorAppData
 {

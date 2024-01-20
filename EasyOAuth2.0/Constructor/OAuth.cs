@@ -1,9 +1,6 @@
+using EasyOAuth.Abstraction;
 
-using EasyOAuth2._0.OAuthConstructor.Interfaces;
-using UlearnTodoTimer.OAuthConstructor;
-using UlearnTodoTimer.OAuthConstructor.Interfaces;
-
-namespace UlearnTodoTimer.FluetApi.ConstructorOauth;
+namespace EasyOAuth.ConstructorOauth;
 
 
 // привет принцип ISP (разделение интерфейсов)

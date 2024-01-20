@@ -1,9 +1,8 @@
-using UlearnTodoTimer.OAuthConstructor;
-using UlearnTodoTimer.OAuthConstructor.Extentions;
-using UlearnTodoTimer.OAuthConstructor.Interfaces;
-using UlearnTodoTimer.OAuthConstructor.Requests;
+using EasyOAuth.Abstraction;
+using EasyOAuth;
+using EasyOAuth.Requests;
 
-namespace UlearnTodoTimer.FluetApi.ConstructorOauth;
+namespace EasyOAuth.ConstructorOauth;
 
 public class ConstructorOAuthService
 {

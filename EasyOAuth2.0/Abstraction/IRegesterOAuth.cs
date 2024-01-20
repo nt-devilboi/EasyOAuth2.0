@@ -1,6 +1,6 @@
-using UlearnTodoTimer.FluetApi.ConstructorOauth;
+using EasyOAuth.ConstructorOauth;
 
-namespace EasyOAuth2._0.OAuthConstructor.Interfaces;
+namespace EasyOAuth.Abstraction;
 
 public interface IRegisterOAuth
 {

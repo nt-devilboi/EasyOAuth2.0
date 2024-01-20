@@ -1,6 +1,6 @@
-using UlearnTodoTimer.OAuthConstructor.Extentions;
+using EasyOAuth;
 
-namespace UlearnTodoTimer.OAuthConstructor;
+namespace EasyOAuth;
 
 public class OAuthData // по идей можно сделать internal, если будет в виде либы
 {

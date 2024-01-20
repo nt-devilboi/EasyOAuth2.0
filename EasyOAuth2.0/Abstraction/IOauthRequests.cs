@@ -1,4 +1,4 @@
-namespace UlearnTodoTimer.OAuthConstructor.Interfaces;
+namespace EasyOAuth.Abstraction;
 
 public interface IOauthRequests
 {

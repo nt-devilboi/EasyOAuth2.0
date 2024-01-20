@@ -1,9 +1,9 @@
 using System.Net;
 using System.Net.Http.Headers;
-using UlearnTodoTimer.OAuthConstructor.Extentions;
-using UlearnTodoTimer.OAuthConstructor.Interfaces;
+using EasyOAuth.Abstraction;
+using EasyOAuth;
 
-namespace UlearnTodoTimer.OAuthConstructor;
+namespace EasyOAuth.OAuthConnect;
 
 public class OAuthService : IOAuthService
 {

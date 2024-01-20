@@ -1,4 +1,4 @@
-namespace UlearnTodoTimer.OAuthConstructor;
+namespace EasyOAuth;
 
 public class QueryOAuth
 {

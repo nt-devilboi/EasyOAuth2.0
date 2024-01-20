@@ -1,9 +1,9 @@
 using System.Text.Json;
 using Newtonsoft.Json;
 
-namespace UlearnTodoTimer.OAuthConstructor.Extentions;
+namespace EasyOAuth;
 
-public static class JsonDeserialiseExtension
+public static class JsonDeserializeExtension
 {
     public static async Task<T?> JsonDeserialize<T>(this HttpContent httpContent)
     {

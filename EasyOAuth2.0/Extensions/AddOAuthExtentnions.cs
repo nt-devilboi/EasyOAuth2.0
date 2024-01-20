@@ -1,9 +1,8 @@
-using EasyOAuth2._0.OAuthConstructor.Interfaces;
+using EasyOAuth.Abstraction;
+using EasyOAuth.ConstructorOauth;
 using Microsoft.Extensions.DependencyInjection;
-using UlearnTodoTimer.FluetApi.ConstructorOauth;
-using UlearnTodoTimer.OAuthConstructor.Interfaces;
 
-namespace EasyOAuth2._0.OAuthConstructor.Extentions;
+namespace EasyOAuth.Extensions;
 
 public static class AddOAuthExtensions
 {
@@ -23,9 +22,9 @@ public static class AddOAuthExtensions
         registerOAuth.AddOAuth("vk", configureOAuth);
     }
     
-    public static IServiceCollection  AddOAuths(this IServiceCollection services, IRegisterOAuth OAuth)
+    public static IServiceCollection  AddOAuths(this IServiceCollection services, IRegisterOAuth oAuth)
     {
-        services.AddSingleton<IProvideOAuth>(_ => OAuth as IProvideOAuth ?? throw new Exception("OAuth Not Found"));
+        services.AddSingleton<IProvideOAuth>(_ => oAuth as IProvideOAuth ?? throw new Exception("OAuth Not Found"));
         return services;
     }
 }

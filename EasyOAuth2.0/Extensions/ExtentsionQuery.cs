@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace UlearnTodoTimer.OAuthConstructor.Extentions;
+namespace EasyOAuth;
 
 public static class ExtensionQuery
 {

@@ -1,7 +1,7 @@
-using UlearnTodoTimer.OAuthConstructor.Extentions;
-using UlearnTodoTimer.OAuthConstructor.Interfaces;
+using EasyOAuth.Abstraction;
+using EasyOAuth;
 
-namespace UlearnTodoTimer.OAuthConstructor.Requests;
+namespace EasyOAuth.Requests;
 
 internal class OAuthRequests : IOauthRequests
 {

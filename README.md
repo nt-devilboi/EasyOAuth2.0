@@ -19,9 +19,9 @@ oAuths.AddOAuth("GitHub", _ =>
         .SetUriGetAccessToken("login/oauth/access_token")
         .SetHostServiceOAuth("https://github.com")
         .ConfigureApp()
-        .SetRedirectUrl("http://localhost:5128/OAuth/Bot")
-        .SetClientSecret("cce83e71b1bcba85fa5493c74fca25e93ec1fb3b")
-        .SetClientId("08f51cb49cd389a89b6f");
+        .SetRedirectUrl("YourUrl")
+        .SetClientSecret("YourClientSecret")
+        .SetClientId("YourClientId");
 });
 ```
 ### Third Add in Di (for asp.net)

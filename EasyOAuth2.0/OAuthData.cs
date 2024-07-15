@@ -1,20 +1,21 @@
-using EasyOAuth;
-
 namespace EasyOAuth;
 
 public class OAuthData // по идей можно сделать internal, если будет в виде либы
 {
-    public string ServiceOAuth { get; set; } = string.Empty;
-    public string UriAuthorization { get; set; } = string.Empty;
-    public string UriGetAccessToken { get; set; } = string.Empty;
-
+  
     private readonly List<QueryOAuth>
         QueryOAuths = new List<QueryOAuth>(); // по идей можно сделать internal, если будет в виде либы
 
     public bool Contains(string queryName)
     {
-        return QueryOAuths.FirstOrDefault(x => x.QueryName == queryName) != null; //todo make more Performance 
+        return QueryOAuths.FirstOrDefault(x => x.QueryName == queryName) != null; //todo make more Performance. можно заюзать вместо листа хэш сет 
     }
+
+    public string Get(string name)
+    {
+        return QueryOAuths.FirstOrDefault(x => x.QueryName == name).Value;
+    }
+    
     
     public void AddQuery(string queryName, string value, QueryUse queryUse)
     {

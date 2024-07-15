@@ -5,12 +5,6 @@ namespace EasyOAuth;
 
 public static class JsonDeserializeExtension
 {
-    public static async Task<T?> JsonDeserialize<T>(this HttpContent httpContent)
-    {
-        var dataJson = await httpContent.ReadAsStringAsync();
-        return JsonConvert.DeserializeObject<T>(dataJson);
-    }
-    
     public static async Task<string?> JsonDeserializeAccessToken(this HttpContent httpContent)
     {
         var dataJson = await httpContent.ReadAsStringAsync();

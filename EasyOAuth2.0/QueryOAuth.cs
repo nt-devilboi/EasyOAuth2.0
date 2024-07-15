@@ -1,6 +1,6 @@
 namespace EasyOAuth;
 
-public class QueryOAuth
+public class QueryOAuth // todo: Use complete 
 {
     public string QueryName { get; set; }
     public string Value { get; set; }
@@ -12,6 +12,4 @@ public class QueryOAuth
         Type = type;
         Value = value;
     }
-    
-    
 }

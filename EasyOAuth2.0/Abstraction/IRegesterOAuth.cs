@@ -1,8 +1,8 @@
-using EasyOAuth.ConstructorOauth;
+using EasyOAuth.Constructor;
 
 namespace EasyOAuth.Abstraction;
 
 public interface IRegisterOAuth
 {
-    public OAuths AddOAuth(string name, Action<ConstructorOAuthService> ConfigureOAuth);
+    public OAuths AddOAuth(string name, Action<OAuthServiceBuilder> ConfigureOAuth);
 }

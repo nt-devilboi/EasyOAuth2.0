@@ -1,5 +1,4 @@
 using EasyOAuth.Abstraction;
-using EasyOAuth;
 
 namespace EasyOAuth.Requests;
 
@@ -15,14 +14,16 @@ internal class OAuthRequests : IOauthRequests
     //Todo: можно немного порефакторить
     public string CreateAuthRequest(string state)
     {
-        return $"{_oAuthData.ServiceOAuth}/{_oAuthData.UriAuthorization}?"
+        var auth = _oAuthData.Get("auth_uri");
+        return $"{auth}?"
                + "state".AddQueryValue(state) + "&"
-               + string.Join("&", _oAuthData.GetOAuthRequestQueries()).TrimEnd('&');
+               + string.Join("&", _oAuthData.GetOAuthRequestQueries()).TrimEnd('&'); //todo: don't sure that need use "TrimEnd" 
     }
 
     public string CreateGetAccessTokenRequest(string code)
     {
-        return $"{_oAuthData.ServiceOAuth}/{_oAuthData.UriGetAccessToken}?" 
+        var getTokenUri = _oAuthData.Get("get_token_uri");
+        return $"{getTokenUri}?" 
                + "code".AddQueryValue(code) + "&" 
                + string.Join("&", _oAuthData.GetAccessTokenQueries()).TrimEnd('&');
     }

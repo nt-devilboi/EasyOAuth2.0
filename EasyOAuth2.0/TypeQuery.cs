@@ -1,8 +1,8 @@
 namespace EasyOAuth;
 
-public enum QueryUse
+public enum QueryFor
 {
-    OnlyCreateRequest,
-    OnlyGetAccessToken,
+    CreateRequest,
+    GetAccessToken,
     All
 }

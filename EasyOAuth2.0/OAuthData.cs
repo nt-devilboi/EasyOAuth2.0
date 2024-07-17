@@ -2,34 +2,32 @@ namespace EasyOAuth;
 
 public class OAuthData // по идей можно сделать internal, если будет в виде либы
 {
-  
-    private readonly List<QueryOAuth>
-        QueryOAuths = new List<QueryOAuth>(); // по идей можно сделать internal, если будет в виде либы
+    public string AuthUri { get; set; }
+    public string GetAccessTokenUri { get; set; }
+
+    private readonly Dictionary<string, QueryOAuth> QueryOAuths = new(); 
 
     public bool Contains(string queryName)
     {
-        return QueryOAuths.FirstOrDefault(x => x.QueryName == queryName) != null; //todo make more Performance. можно заюзать вместо листа хэш сет 
+        return QueryOAuths.ContainsKey(queryName);
     }
 
-    public string Get(string name)
+    public void AddQuery(string queryName, string value, QueryFor queryFor)
     {
-        return QueryOAuths.FirstOrDefault(x => x.QueryName == name).Value;
-    }
-    
-    
-    public void AddQuery(string queryName, string value, QueryUse queryUse)
-    {
-        QueryOAuths.Add(new QueryOAuth(queryName, value, queryUse));
+        QueryOAuths.Add(queryName, new QueryOAuth(queryName, value, queryFor));
     }
 
     public IEnumerable<string> GetOAuthRequestQueries()
-        => QueryOAuths
-            .Where(x => x.Type is QueryUse.OnlyCreateRequest or QueryUse.All)
-            .Select(x => x.QueryName.AddQueryValue(x.Value));
-
+    {
+        return QueryOAuths
+            .Where(query => query.Value.Type is QueryFor.CreateRequest or QueryFor.All)
+            .Select(query => query.Value.QueryName.AddQuery(query.Value.Value));
+    }
 
     public IEnumerable<string> GetAccessTokenQueries()
-        => QueryOAuths
-            .Where(x => x.Type is QueryUse.OnlyGetAccessToken or QueryUse.All)
-            .Select(x => x.QueryName.AddQueryValue(x.Value));
+    {
+        return QueryOAuths
+            .Where(query => query.Value.Type is QueryFor.GetAccessToken or QueryFor.All)
+            .Select(x => x.Value.QueryName.AddQuery(x.Value.Value));
+    }
 }

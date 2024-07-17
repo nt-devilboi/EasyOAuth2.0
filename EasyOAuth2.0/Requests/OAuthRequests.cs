@@ -4,27 +4,17 @@ namespace EasyOAuth.Requests;
 
 internal class OAuthRequests : IOauthRequests
 {
-    private readonly OAuthData _oAuthData;
+    private readonly OAuthData _auth;
 
-    public OAuthRequests(OAuthData oAuthData)
+    public OAuthRequests(OAuthData auth)
     {
-        _oAuthData = oAuthData;
+        _auth = auth;
     }
-    
+
     //Todo: можно немного порефакторить
     public string CreateAuthRequest(string state)
-    {
-        var auth = _oAuthData.Get("auth_uri");
-        return $"{auth}?"
-               + "state".AddQueryValue(state) + "&"
-               + string.Join("&", _oAuthData.GetOAuthRequestQueries()).TrimEnd('&'); //todo: don't sure that need use "TrimEnd" 
-    }
-
+        => $"{_auth.AuthUri}?{"state".AddQuery(state)}&{string.Join("&", _auth.GetOAuthRequestQueries())}";
+    
     public string CreateGetAccessTokenRequest(string code)
-    {
-        var getTokenUri = _oAuthData.Get("get_token_uri");
-        return $"{getTokenUri}?" 
-               + "code".AddQueryValue(code) + "&" 
-               + string.Join("&", _oAuthData.GetAccessTokenQueries()).TrimEnd('&');
-    }
+        => $"{_auth.GetAccessTokenUri}?{"code".AddQuery(code)}&{string.Join("&", _auth.GetAccessTokenQueries())}";
 }

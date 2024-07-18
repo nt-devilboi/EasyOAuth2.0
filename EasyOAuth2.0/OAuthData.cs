@@ -11,7 +11,7 @@ public class OAuthData // по идей можно сделать internal, ес
 
     public bool Contains(string queryName)
     {
-        return QueryOAuths.ContainsKey(queryName);
+        return QueryOAuths.TryGetValue(queryName, out var value) && !string.IsNullOrEmpty(value.Value);
     }
 
     public void AddQuery(string queryName, string value, QueryFor queryFor)

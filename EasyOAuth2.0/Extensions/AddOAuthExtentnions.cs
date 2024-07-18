@@ -1,6 +1,6 @@
 using System.Reflection;
 using EasyOAuth.Abstraction;
-using EasyOAuth.Constructor;
+using EasyOAuth.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EasyOAuth.Extensions;
@@ -28,12 +28,12 @@ public static class AddOAuthExtensions
         IRegisterOAuth oAuth)
         where T : OAuthEntity
         where TRepository : TokenLinkRepositoryBase
-        where TStrategy : IStrategyToken
+        where TStrategy : StrategyToken
     {
         services.AddScoped<TokenLinkRepositoryBase, TRepository>();
         services.AddSingleton<IProvideOAuth>(_ => oAuth as IProvideOAuth ?? throw new Exception("OAuth Not Found"));
         services.AddMvc().AddApplicationPart(Assembly.GetAssembly(typeof(AuthController)));
-        services.AddSingleton<IStrategyToken, TStrategy>();
+        services.AddSingleton<StrategyToken, TStrategy>();
         services.AddScoped<IOAuthClient, OAuthClient.OAuthClient>();
         return services;
     }

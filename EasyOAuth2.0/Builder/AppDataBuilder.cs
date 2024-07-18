@@ -1,4 +1,6 @@
-namespace EasyOAuth.Constructor;
+using EasyOAuth.Extensions;
+
+namespace EasyOAuth.Builder;
 
 public class OAuthAppDataBuilder // todo: naming so strange
 {

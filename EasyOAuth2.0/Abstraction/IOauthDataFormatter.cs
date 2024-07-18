@@ -1,6 +1,6 @@
 namespace EasyOAuth.Abstraction;
 
-public interface IOauthRequests
+public interface IOauthDataFormatter
 {
     public string CreateAuthRequest(string state);
     public string CreateGetAccessTokenRequest(string code);

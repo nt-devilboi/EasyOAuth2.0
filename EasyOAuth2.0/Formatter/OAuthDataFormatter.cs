@@ -1,20 +1,20 @@
 using EasyOAuth.Abstraction;
+using EasyOAuth.Extensions;
 
-namespace EasyOAuth.Requests;
+namespace EasyOAuth.Formatter;
 
-internal class OAuthRequests : IOauthRequests
+internal class OAuthDataFormatter : IOauthDataFormatter
 {
     private readonly OAuthData _auth;
 
-    public OAuthRequests(OAuthData auth)
+    public OAuthDataFormatter(OAuthData auth)
     {
         _auth = auth;
     }
 
-    //Todo: можно немного порефакторить
     public string CreateAuthRequest(string state)
         => $"{_auth.AuthUri}?{"state".AddQuery(state)}&{string.Join("&", _auth.GetOAuthRequestQueries())}";
-    
+
     public string CreateGetAccessTokenRequest(string code)
         => $"{_auth.GetAccessTokenUri}?{"code".AddQuery(code)}&{string.Join("&", _auth.GetAccessTokenQueries())}";
 }

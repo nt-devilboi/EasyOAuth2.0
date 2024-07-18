@@ -1,3 +1,5 @@
+using EasyOAuth.Extensions;
+
 namespace EasyOAuth;
 
 public class OAuthData // по идей можно сделать internal, если будет в виде либы

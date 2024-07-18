@@ -1,6 +1,7 @@
 using System.Net;
 using System.Net.Http.Headers;
 using EasyOAuth.Abstraction;
+using EasyOAuth.Extensions;
 
 namespace EasyOAuth.OAuthClient;
 

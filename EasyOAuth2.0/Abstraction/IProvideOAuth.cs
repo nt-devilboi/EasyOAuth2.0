@@ -2,6 +2,6 @@ namespace EasyOAuth.Abstraction;
 
 public interface IProvideOAuth
 {
-    public IReadOnlyDictionary<string, IOauthRequests> GetAll { get; }
-    public IOauthRequests GetOAuth(string name);
+    public IReadOnlyDictionary<string, IOauthDataFormatter> GetAll { get; }
+    public IOauthDataFormatter GetOAuth(string name);
 }

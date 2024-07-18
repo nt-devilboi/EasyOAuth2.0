@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace EasyOAuth;
+namespace EasyOAuth.Extensions;
 
 public static class ExtensionQuery
 {

@@ -7,7 +7,7 @@ namespace EasyOAuth;
 [ApiController]
 [Route("/api/oauth")]
 public class AuthController(
-    IStrategyToken tokenAction,
+    StrategyToken tokenAction,
     IOAuthClient ioAuthService,
     TokenLinkRepositoryBase tokenLinkRepository)
 {

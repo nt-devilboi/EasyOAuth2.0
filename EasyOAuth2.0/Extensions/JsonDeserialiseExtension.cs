@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace EasyOAuth;
+namespace EasyOAuth.Extensions;
 
 public static class JsonDeserializeExtension
 {

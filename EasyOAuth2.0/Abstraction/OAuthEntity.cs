@@ -1,4 +1,4 @@
-namespace EasyOAuth;
+namespace EasyOAuth.Abstraction;
 
 public abstract class OAuthEntity
 {

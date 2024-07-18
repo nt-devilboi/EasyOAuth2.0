@@ -1,7 +1,8 @@
 using EasyOAuth.Abstraction;
-using EasyOAuth.Requests;
+using EasyOAuth.Extensions;
+using EasyOAuth.Formatter;
 
-namespace EasyOAuth.Constructor;
+namespace EasyOAuth.Builder;
 
 public class OAuthServiceBuilder
 {
@@ -50,7 +51,7 @@ public class OAuthServiceBuilder
         return new OAuthAppDataBuilder(_oAuthData);
     }
 
-    public IOauthRequests Build()
+    public IOauthDataFormatter Build()
     {
         if (string.IsNullOrEmpty(_oAuthData.AuthUri)) throw new ArgumentException("Not set host Service Authorization");
 
@@ -60,7 +61,7 @@ public class OAuthServiceBuilder
 
         if (!_oAuthData.Contains("client_secret")) throw new ArgumentException("Not set client secret");
 
-        var oAuth = new OAuthRequests(_oAuthData);
+        var oAuth = new OAuthDataFormatter(_oAuthData);
 
         return oAuth;
     }

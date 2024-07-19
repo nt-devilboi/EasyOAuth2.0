@@ -28,7 +28,7 @@ oAuths.AddOAuth("google", _ =>
 ```cs
 builder.Services.AddOAuths<OAuthEntity,RepositoryOauth, StrategyToken>(oAuths);
 ```
-
+where OAuthEntity,RepositoryOauth, StrategyToken you must make implementation
 ### now is work ONLY Telegram bot or you must take requests by myself
 
 example is here

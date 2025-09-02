@@ -2,7 +2,7 @@ using EasyOAuth.Extensions;
 
 namespace EasyOAuth;
 
-public class OAuthData // по идей можно сделать internal, если будет в виде либы
+internal class OAuthData // по идей можно сделать internal, если будет в виде либы
 {
     private readonly Dictionary<string, QueryOAuth> QueryOAuths = new();
     public string AuthUri { get; set; }

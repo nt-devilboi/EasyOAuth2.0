@@ -5,22 +5,15 @@ using EasyOAuth.Extensions;
 
 namespace EasyOAuth.OAuthClient;
 
-public class OAuthClient : IOAuthClient
+public class OAuthClient(
+    IProvideOAuth provideOAuth,
+    TokenLinkRepositoryBase tokenLinkRepository)
+    : IOAuthClient
 {
-    private readonly IProvideOAuth _provideOAuth;
-    private readonly TokenLinkRepositoryBase _tokenLinkRepository;
-
-    public OAuthClient(IProvideOAuth provideOAuth,
-        TokenLinkRepositoryBase tokenLinkRepository)
-    {
-        _provideOAuth = provideOAuth;
-        _tokenLinkRepository = tokenLinkRepository;
-    }
-
     public async Task<string?> GetAccessToken(string state, string code)
     {
-        var data = await _tokenLinkRepository.GetByState(state);
-        var request = _provideOAuth.GetOAuth(data.OAuthName).CreateGetAccessTokenRequest(code);
+        var data = await tokenLinkRepository.GetByState(state);
+        var request = provideOAuth.GetOAuth(data.OAuthName).CreateGetAccessTokenRequest(code);
 
         var client = new HttpClient();
         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -36,20 +29,19 @@ public class OAuthClient : IOAuthClient
     public async Task<string> GetOAuthRequest(string oAuth, string id)
     {
         var state = GenerateState();
-        await _tokenLinkRepository.Add(oAuth, state, id);
+        await tokenLinkRepository.Add(oAuth, state, id);
 
-        return _provideOAuth.GetOAuth(oAuth).CreateAuthRequest(state);
+        return provideOAuth.GetOAuth(oAuth).CreateAuthRequest(state);
     }
 
 
     public List<string> GetOAuthsRequests(string state = "")
     {
-        var oauthRequestsArray = _provideOAuth.GetAll;
+        var oauthRequestsArray = provideOAuth.GetAll;
         var requestsAuth = new List<string>();
 
 
         foreach (var oAuth in oauthRequestsArray)
-            // stateLink.Add(oAuth, state, userId);
             requestsAuth.Add(oAuth.Value.CreateAuthRequest($"{oAuth.Key}:{state}"));
 
         return requestsAuth;

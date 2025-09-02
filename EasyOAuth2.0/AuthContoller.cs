@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EasyOAuth;
 
-// как варинат было бы круто, чтоб мы в program.cs добавляли только класс юзера, он бы сам соеденял этого юзера с токеном.
 [ApiController]
 [Route("/api/oauth")]
 public class AuthController(

@@ -2,7 +2,7 @@ using EasyOAuth.Extensions;
 
 namespace EasyOAuth.Builder;
 
-public class OAuthAppDataBuilder // todo: naming so strange
+public class OAuthAppDataBuilder
 {
     private readonly OAuthData _oAuthData;
 

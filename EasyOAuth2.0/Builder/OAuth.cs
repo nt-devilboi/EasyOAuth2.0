@@ -8,7 +8,8 @@ public class OAuths : IRegisterOAuth, IProvideOAuth
     private readonly Dictionary<string, IOauthDataFormatter> OAuthRequests = new();
     public IReadOnlyDictionary<string, IOauthDataFormatter> GetAll => OAuthRequests;
 
-    public IOauthDataFormatter GetOAuth(string name) //todo как по мне было бы приятнее если бы мы возрвщали элемент словаря
+    public IOauthDataFormatter
+        GetOAuth(string name) //todo как по мне было бы приятнее если бы мы возрвщали элемент словаря
     {
         if (!OAuthRequests.TryGetValue(name, out var value))
             throw new ArgumentException($"oauth with name {name} not found");
@@ -30,5 +31,8 @@ public class OAuths : IRegisterOAuth, IProvideOAuth
         return this;
     }
 
-    public static IRegisterOAuth CreateBuilder() => new OAuths();
+    public static IRegisterOAuth CreateBuilder()
+    {
+        return new OAuths();
+    }
 }

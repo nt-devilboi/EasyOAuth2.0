@@ -13,8 +13,12 @@ internal class OAuthDataFormatter : IOauthDataFormatter
     }
 
     public string CreateAuthRequest(string state)
-        => $"{_auth.AuthUri}?{"state".AddQuery(state)}&{string.Join("&", _auth.GetOAuthRequestQueries())}";
+    {
+        return $"{_auth.AuthUri}?{"state".AddQuery(state)}&{string.Join("&", _auth.GetOAuthRequestQueries())}";
+    }
 
     public string CreateGetAccessTokenRequest(string code)
-        => $"{_auth.GetAccessTokenUri}?{"code".AddQuery(code)}&{string.Join("&", _auth.GetAccessTokenQueries())}";
+    {
+        return $"{_auth.GetAccessTokenUri}?{"code".AddQuery(code)}&{string.Join("&", _auth.GetAccessTokenQueries())}";
+    }
 }

@@ -4,10 +4,9 @@ namespace EasyOAuth;
 
 public class OAuthData // по идей можно сделать internal, если будет в виде либы
 {
+    private readonly Dictionary<string, QueryOAuth> QueryOAuths = new();
     public string AuthUri { get; set; }
     public string GetAccessTokenUri { get; set; }
-
-    private readonly Dictionary<string, QueryOAuth> QueryOAuths = new(); 
 
     public bool Contains(string queryName)
     {

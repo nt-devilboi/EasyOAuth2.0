@@ -13,7 +13,7 @@ public static class AddOAuthExtensions
         {
             auth
                 .SetUriPageAuth(
-                    "https://oauth.vk.com/authorize") //todo: явно https можно здесь не учитывать. upd так то нжуно 
+                    "https://oauth.vk.com/authorize")
                 .SetUriGetAccessToken("https://oauth.vk.com/access_token")
                 .SetResponseType("code")
                 .SetVersion("5.131");
@@ -33,7 +33,7 @@ public static class AddOAuthExtensions
         services.AddScoped<TokenLinkRepositoryBase, TRepository>();
         services.AddSingleton<IProvideOAuth>(_ => oAuth as IProvideOAuth ?? throw new Exception("OAuth Not Found"));
         services.AddMvc().AddApplicationPart(Assembly.GetAssembly(typeof(AuthController)));
-        services.AddSingleton<StrategyToken, TStrategy>();
+        services.AddScoped<StrategyToken, TStrategy>();
         services.AddScoped<IOAuthClient, OAuthClient.OAuthClient>();
         return services;
     }

@@ -55,7 +55,8 @@ public class OAuthServiceBuilder
     {
         if (string.IsNullOrEmpty(_oAuthData.AuthUri)) throw new ArgumentException("Not set host Service Authorization");
 
-        if (string.IsNullOrEmpty(_oAuthData.GetAccessTokenUri)) throw new ArgumentException("Not set Service Authorization");
+        if (string.IsNullOrEmpty(_oAuthData.GetAccessTokenUri))
+            throw new ArgumentException("Not set Service Authorization");
 
         if (!_oAuthData.Contains("client_id")) throw new ArgumentException("Not Set client id");
 

@@ -46,7 +46,7 @@ public class OAuthClient : IOAuthClient
     {
         var oauthRequestsArray = _provideOAuth.GetAll;
         var requestsAuth = new List<string>();
-        
+
 
         foreach (var oAuth in oauthRequestsArray)
             // stateLink.Add(oAuth, state, userId);

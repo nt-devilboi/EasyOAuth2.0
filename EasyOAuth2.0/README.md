@@ -9,8 +9,11 @@
 ```cs
 var oAuths = OAuths.CreateBuilder();
 ```
+
 and
+
 ### Second Add OAuths
+
 ```cs
 oAuths.AddOAuth("google", _ =>
     _.SetUriPageAuth("https://accounts.google.com/o/oauth2/v2/auth")
@@ -24,11 +27,15 @@ oAuths.AddOAuth("google", _ =>
         .SetCustomQuery("grant_type", "authorization_code", QueryFor.GetAccessToken))
 ;
 ```
+
 ### Third Add in Di (for asp.net)
+
 ```cs
 builder.Services.AddOAuths<OAuthEntity,RepositoryOauth, StrategyToken>(oAuths);
 ```
+
 where OAuthEntity,RepositoryOauth, StrategyToken you must make implementation
+
 ### now is work ONLY Telegram bot or you must take requests by myself
 
 example is here

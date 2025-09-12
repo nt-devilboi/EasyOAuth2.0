@@ -27,10 +27,10 @@ public static class AddOAuthExtensions
     public static IServiceCollection AddOAuths<T, TRepository, TStrategy>(this IServiceCollection services,
         IRegisterOAuth oAuth)
         where T : OAuthEntity
-        where TRepository : TokenLinkRepositoryBase
+        where TRepository : class, ITokenLinkRepository
         where TStrategy : StrategyToken
     {
-        services.AddScoped<TokenLinkRepositoryBase, TRepository>();
+        services.AddScoped<ITokenLinkRepository, TRepository>();
         services.AddSingleton<IProvideOAuth>(_ => oAuth as IProvideOAuth ?? throw new Exception("OAuth Not Found"));
         services.AddMvc().AddApplicationPart(Assembly.GetAssembly(typeof(AuthController)));
         services.AddScoped<StrategyToken, TStrategy>();

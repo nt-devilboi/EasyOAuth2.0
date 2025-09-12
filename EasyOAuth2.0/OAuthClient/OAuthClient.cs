@@ -7,7 +7,7 @@ namespace EasyOAuth.OAuthClient;
 
 public class OAuthClient(
     IProvideOAuth provideOAuth,
-    TokenLinkRepositoryBase tokenLinkRepository)
+    ITokenLinkRepository tokenLinkRepository)
     : IOAuthClient
 {
     public async Task<string?> GetAccessToken(string state, string code)

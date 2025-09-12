@@ -8,7 +8,7 @@ namespace EasyOAuth;
 public class AuthController(
     StrategyToken tokenAction,
     IOAuthClient oAuthService,
-    TokenLinkRepositoryBase tokenLinkRepository)
+    ITokenLinkRepository tokenLinkRepository)
 {
     [HttpGet]
     public async Task<object> Auth([FromQuery] string code, [FromQuery(Name = "state")] string state)

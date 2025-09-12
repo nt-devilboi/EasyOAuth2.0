@@ -53,14 +53,14 @@ public class OAuthServiceBuilder
 
     public IOauthDataFormatter Build()
     {
-        if (string.IsNullOrEmpty(_oAuthData.AuthUri)) throw new ArgumentException("Not set host Service Authorization");
+        if (string.IsNullOrEmpty(_oAuthData.AuthUri)) throw new ArgumentException($"Not set host Service Authorization for request: {_oAuthData.AuthUri}");
 
         if (string.IsNullOrEmpty(_oAuthData.GetAccessTokenUri))
-            throw new ArgumentException("Not set Service Authorization");
+            throw new ArgumentException($"Not set Service Authorization for request: {_oAuthData.AuthUri}");
 
-        if (!_oAuthData.Contains("client_id")) throw new ArgumentException("Not Set client id");
+        if (!_oAuthData.Contains("client_id")) throw new ArgumentException($"Not Set client id for request: {_oAuthData.AuthUri}");
 
-        if (!_oAuthData.Contains("client_secret")) throw new ArgumentException("Not set client secret");
+        if (!_oAuthData.Contains("client_secret")) throw new ArgumentException($"Not set client secret for request: {_oAuthData.AuthUri}");
 
         var oAuth = new OAuthDataFormatter(_oAuthData);
 

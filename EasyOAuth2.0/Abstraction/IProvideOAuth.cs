@@ -4,4 +4,6 @@ public interface IProvideOAuth
 {
     public IReadOnlyDictionary<string, IOauthDataFormatter> GetAll { get; }
     public IOauthDataFormatter GetOAuth(string name);
+    
+    public string RedirectUri { get; }
 }

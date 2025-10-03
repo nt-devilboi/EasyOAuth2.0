@@ -15,14 +15,15 @@ public class AuthController(
     {
         var token = await oAuthService.GetAccessToken(state, code);
 
-        if (string.IsNullOrEmpty(token)) return "token not received";
+        
+        if (string.IsNullOrEmpty(token)) return "try again";
 
         var data = await tokenLinkRepository.GetByState(state);
         await tokenLinkRepository.Remove(data);
 
         await tokenAction.Execute(token, data);
 
-        return $"token is {token}";
+        return oAuthService.GetRedirectUrl();
     }
 
     [HttpGet("get/oauth/requests")]

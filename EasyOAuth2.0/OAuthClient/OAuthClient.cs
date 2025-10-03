@@ -2,6 +2,7 @@ using System.Net;
 using System.Net.Http.Headers;
 using EasyOAuth.Abstraction;
 using EasyOAuth.Extensions;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EasyOAuth.OAuthClient;
 
@@ -45,6 +46,11 @@ public class OAuthClient(
             requestsAuth.Add(oAuth.Value.CreateAuthRequest($"{oAuth.Key}:{state}"));
 
         return requestsAuth;
+    }
+
+    public RedirectResult GetRedirectUrl()
+    {
+        return new RedirectResult(provideOAuth.RedirectUri);
     }
 
 

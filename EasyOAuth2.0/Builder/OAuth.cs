@@ -3,19 +3,21 @@ using EasyOAuth.Abstraction;
 namespace EasyOAuth.Builder;
 
 // привет принцип ISP (разделение интерфейсов)
-public class OAuths : IRegisterOAuth, IProvideOAuth
+public class OAuths(string redirect) : IRegisterOAuth, IProvideOAuth
 {
-    private readonly Dictionary<string, IOauthDataFormatter> OAuthRequests = new();
-    public IReadOnlyDictionary<string, IOauthDataFormatter> GetAll => OAuthRequests;
-
+    private readonly Dictionary<string, IOauthDataFormatter> _oAuthRequests = new();
+    public IReadOnlyDictionary<string, IOauthDataFormatter> GetAll => _oAuthRequests;
+    public string RedirectUri { get; } = redirect;
+    
     public IOauthDataFormatter
         GetOAuth(string name) //todo как по мне было бы приятнее если бы мы возрвщали элемент словаря
     {
-        if (!OAuthRequests.TryGetValue(name, out var value))
+        if (!_oAuthRequests.TryGetValue(name, out var value))
             throw new ArgumentException($"oauth with name {name} not found");
 
         return value;
     }
+
 
     public OAuths AddOAuth(string name, Action<OAuthServiceBuilder> ConfigureOAuth)
     {
@@ -25,14 +27,14 @@ public class OAuths : IRegisterOAuth, IProvideOAuth
 
         var ctorOAuth = new OAuthServiceBuilder(new OAuthData());
         ConfigureOAuth(ctorOAuth);
-        OAuthRequests.Add(name,
+        _oAuthRequests.Add(name,
             ctorOAuth.Build()); // todo: реализовать проверки на то, что запрос может сущестовать и работать.
 
         return this;
     }
 
-    public static IRegisterOAuth CreateBuilder()
+    public static IRegisterOAuth CreateBuilder(string redirectUri)
     {
-        return new OAuths();
+        return new OAuths(redirectUri);
     }
 }
